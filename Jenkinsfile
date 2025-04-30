@@ -38,7 +38,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git branch: "${env.GIT_BRANCH}", credentialsId: 'rohit-etl', url: "${env.EXPECTED_REPO}"
+                git url: "${env.GIT_URL}", credentialsId: "rohit-etl", refspec: "+refs/tags/*:refs/remotes/origin/tags/*", branch: "${env.GIT_BRANCH.replace('refs/tags/', '')}"
             }
         }
 
